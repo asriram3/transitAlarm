@@ -5,16 +5,32 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class DistanceActivity extends ActionBarActivity {
 
+    double[] coords;
+    String stationname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_distance);
+        //get intent
         Intent intent = getIntent();
+        //get station data from intent
+        stationname = intent.getStringExtra();
+        //create text view
+        TextView stationNameView = new TextView(this);
+        stationNameView.setTextSize(40);
+        stationNameView.setText(stationname);
+        //create content view
+        setContentView(stationNameView);
 
+    }
+
+    public double[] getCoords(){
+        stationInfo
     }
 
     @Override
