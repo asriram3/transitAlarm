@@ -15,7 +15,6 @@ import android.util.Log;
 
 
 public class stationInfoParser {
-
     public HashMap<String, double[]> parseForCoords(InputStream in) throws XmlPullParserException{
         XmlPullParser parser = Xml.newPullParser();
         parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
