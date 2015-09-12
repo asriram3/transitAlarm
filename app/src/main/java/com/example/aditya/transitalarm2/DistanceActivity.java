@@ -26,11 +26,11 @@ public class DistanceActivity extends ActionBarActivity {
         stationNameView.setText(stationname);
         //create content view
         setContentView(stationNameView);
-
     }
 
     public double[] getCoords(){
-        stationInfo
+        stationInfoParser x = new stationInfoParser();
+        return coords;
     }
 
     @Override
@@ -51,7 +51,6 @@ public class DistanceActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
