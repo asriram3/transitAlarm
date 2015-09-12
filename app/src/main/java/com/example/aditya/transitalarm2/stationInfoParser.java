@@ -1,52 +1,59 @@
 /**
- * Created by Kasi on 9/12/2015.
+ * Created by Nimay and Kasi on 9/12/2015.
  */
 package com.example.aditya.transitalarm2;
 
+import java.util.HashMap;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import android.os.Bundle;
-
-import android.util.Log;
 import android.util.Xml;
 
+
 public class stationInfoParser {
-    XmlPullParser parser;
-    public stationInfoParser(InputStream inputStream){
-        parser = Xml.newPullParser();
-    }
-    public double[] parseForCoords(String stationName) throws XmlPullParserException{
-        double[] coords = new double[2];
+    public HashMap<String, double[]> parseForCoords(InputStream in) throws XmlPullParserException{
+        XmlPullParser parser = Xml.newPullParser();
+        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+        parser.setInput(in, null);
+        HashMap<String, double[]> stations = new HashMap<>(); // station -> [lat,long]
         String currentTag = null;
+        String currStation = null; //Used as key of stations.
 
         int eventType = parser.getEventType();
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {
                 currentTag = parser.getName();
+
             }
             else if (eventType == XmlPullParser.TEXT) {
-                if ("gtfs_latitude".equals(currentTag)) {
-                    coords[0] = Double.valueOf(parser.getText());
+                if ("name".equals(currentTag)) {
+                    currStation = currentTag;
+                    stations.get(currStation);
+                    double[] coords = new double[2];
+                    stations.put(currStation, coords);
                 }
-                if ("gtfs_longitude".equals(currentTag)) {
-                    coords[1] = Double.valueOf(parser.getText());
+                if ("gtfs_latitude".equals(currentTag)) {
+                    stations.get(currStation)[0] = Double.valueOf(parser.getText());
+                    // Can insert error checking for null.
+                }
+                if ("gtfs_longitude".equals()) {
+                    stations.get(currStation)[1] = Double.valueOf(parser.getText());
+                    // Can insert error checking for null.
                 }
             }
             else if (eventType == XmlPullParser.END_TAG) {
+                continue;
             }
             try {
                 eventType = parser.next();
             } catch(IOException i){
-                coords[0]=0;
-                coords[1]=0;
-                return coords;
+                stations.get(currStation)[0]=0;
+                stations.get(currStation)[1]=0;
+                return stations;
             }
         }
-        return coords;
+        return stations;
     }
 }
