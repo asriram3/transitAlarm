@@ -19,7 +19,7 @@ public class DistanceActivity extends ActionBarActivity {
         //get intent
         Intent intent = getIntent();
         //get station data from intent
-        stationname = intent.getStringExtra();
+        //stationname = intent.getStringExtra();
         //create text view
         TextView stationNameView = new TextView(this);
         stationNameView.setTextSize(40);

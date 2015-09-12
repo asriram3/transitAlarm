@@ -11,6 +11,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import android.util.Xml;
 
+import android.util.Log;
+
 
 public class stationInfoParser {
 
@@ -26,11 +28,11 @@ public class stationInfoParser {
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {
                 currentTag = parser.getName();
-
             }
             else if (eventType == XmlPullParser.TEXT) {
                 if ("name".equals(currentTag)) {
                     currStation = currentTag;
+                    Log.d("stationInfoParser", currStation);
                     stations.get(currStation);
                     double[] coords = new double[2];
                     stations.put(currStation, coords);
@@ -39,7 +41,7 @@ public class stationInfoParser {
                     stations.get(currStation)[0] = Double.valueOf(parser.getText());
                     // Can insert error checking for null.
                 }
-                if ("gtfs_longitude".equals()) {
+                if ("gtfs_longitude".equals(currentTag)) {
                     stations.get(currStation)[1] = Double.valueOf(parser.getText());
                     // Can insert error checking for null.
                 }
