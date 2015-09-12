@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import android.os.Bundle;
 
 import android.util.Log;
 import android.util.Xml;
@@ -17,7 +18,7 @@ import android.util.Xml;
 public class stationInfoParser {
     XmlPullParser parser;
     public stationInfoParser(InputStream inputStream){
-        parser = createParser(inputStream);
+        parser = Xml.newPullParser();
     }
     public double[] parseForCoords(String stationName) throws XmlPullParserException{
         double[] coords = new double[2];
@@ -32,7 +33,7 @@ public class stationInfoParser {
                 if ("gtfs_latitude".equals(currentTag)) {
                     coords[0] = Double.valueOf(parser.getText());
                 }
-                if ("gtfs_longitude".equals()) {
+                if ("gtfs_longitude".equals(currentTag)) {
                     coords[1] = Double.valueOf(parser.getText());
                 }
             }

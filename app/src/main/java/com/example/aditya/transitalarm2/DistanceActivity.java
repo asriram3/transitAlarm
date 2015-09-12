@@ -10,16 +10,15 @@ import android.widget.TextView;
 
 public class DistanceActivity extends ActionBarActivity {
 
-    double[] coords;
     String stationname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //get intent
-        Intent intent = getIntent();
-        //get station data from intent
-        stationname = intent.getStringExtra();
+        double[] stationCoords;
+        Bundle stationData = getIntent().getExtras();
+        stationname=stationData.getString("stationName");
+        stationCoords=stationData.getDoubleArray("stationCoords");
         //create text view
         TextView stationNameView = new TextView(this);
         stationNameView.setTextSize(40);
@@ -28,9 +27,11 @@ public class DistanceActivity extends ActionBarActivity {
         setContentView(stationNameView);
     }
 
-    public double[] getCoords(){
-        stationInfoParser x = new stationInfoParser();
-        return coords;
+    //public double[] getCurrentCoords(){}
+    //NEED TO IMPLEMENT ^^^^^^^^^^^^^^^^
+
+    public double getDistance(double[] stationCoordinates, double[] currentCoordinates){
+        return Math.sqrt((Math.pow(stationCoordinates[0],2)-(Math.pow(currentCoordinates[0],2))) + (Math.pow(stationCoordinates[1],2)-(Math.pow(currentCoordinates[1],2))));
     }
 
     @Override
