@@ -24,6 +24,13 @@
             android:name=".DistanceActivity"
             android:label="@string/title_activity_distance" >
         </activity>
+        <service
+            android:name=".intentService">
+            </service>
+        <service
+            android:name=".backgroundAlarmService">
+
+        </service>
     </application>
 
 </manifest>

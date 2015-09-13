@@ -10,6 +10,9 @@ import android.os.Bundle;
  * Created by Kasi on 9/12/2015.
  */
 public class intentService extends IntentService {
+
+
+
     public intentService() {
         super("intentService");
     }
