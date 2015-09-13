@@ -26,10 +26,8 @@ public class DistanceActivity extends Activity{
         stationCoords = stationData.getDoubleArray("stationCoords");
         setContentView(R.layout.activity_distance);
         //create text view
-        TextView stationNameView = new TextView(this);
-        stationNameView.setTextSize(40);
+        TextView stationNameView = (TextView) findViewById(R.id.stationName);
         stationNameView.setText(stationname);
-
         Button setAlarm = (Button) findViewById(R.id.setAlarmButton);
         //setAlarm.setText("Set Alarm");
         setAlarm.setOnClickListener(new View.OnClickListener() {
