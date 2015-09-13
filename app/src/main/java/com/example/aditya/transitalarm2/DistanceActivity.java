@@ -7,17 +7,21 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Button;
 
 
 public class DistanceActivity extends Activity{
 
     String stationname;
+    double[] stationCoords;
 
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        double[] stationCoords;
         //collecting extra data from intent
         Bundle stationData = getIntent().getExtras();
         stationname = stationData.getString("stationName");
@@ -26,12 +30,20 @@ public class DistanceActivity extends Activity{
         TextView stationNameView = new TextView(this);
         stationNameView.setTextSize(40);
         stationNameView.setText(stationname);
-        //create content view
+
+        Button setAlarm = (Button) findViewById(R.id.setAlarmButton);
+        setAlarm.setText("Set Alarm");
+        setAlarm.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("stationCoords", stationCoords);
+                startActivity(i);
+            }
+        });
         setContentView(stationNameView);
-        //LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 1, new Intent(this, intentService.class), 0);
-        //locationManager.addProximityAlert(stationCoords[0], stationCoords[1], 3220, -1, pendingIntent);
+        //insert button
     }
+
 
     public double getDistance(double[] stationCoordinates, double[] currentCoordinates){
         return Math.sqrt((Math.pow(stationCoordinates[0],2)-(Math.pow(currentCoordinates[0],2))) + (Math.pow(stationCoordinates[1],2)-(Math.pow(currentCoordinates[1],2))));
