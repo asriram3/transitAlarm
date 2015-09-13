@@ -25,6 +25,7 @@ public class intentService extends IntentService {
         double[] stationCoords = stationData.getDoubleArray("stationCoords");
         try {
             PendingIntent pendingIntent = PendingIntent.getService(this, 1, new Intent(this, backgroundAlarmService.class), 0);
+            System.out.println("Waiting for you to reach your stop");
             locationManager.addProximityAlert(stationCoords[0], stationCoords[1], 3220, -1, pendingIntent);
         }catch (Exception e){
             System.out.println(e);
