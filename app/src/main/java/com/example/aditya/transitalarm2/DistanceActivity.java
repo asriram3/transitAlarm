@@ -28,9 +28,9 @@ public class DistanceActivity extends Activity{
         stationNameView.setText(stationname);
         //create content view
         setContentView(stationNameView);
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        PendingIntent pi = PendingIntent.getService(this, 1, new Intent(this, intentService.class), 0);
-        locationManager.addProximityAlert(stationCoords[0], stationCoords[1], 3220, -1, pi);
+        //LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 1, new Intent(this, intentService.class), 0);
+        //locationManager.addProximityAlert(stationCoords[0], stationCoords[1], 3220, -1, pendingIntent);
     }
 
     public double getDistance(double[] stationCoordinates, double[] currentCoordinates){
