@@ -1,6 +1,8 @@
 package com.example.aditya.transitalarm2;
 
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,23 +17,23 @@ public class DistanceActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         //get intent
         Intent intent = getIntent();
         //get station data from intent
         //stationname = intent.getStringExtra();
-=======
         double[] stationCoords;
         Bundle stationData = getIntent().getExtras();
         stationname=stationData.getString("stationName");
         stationCoords=stationData.getDoubleArray("stationCoords");
->>>>>>> fdcf07c0f59b833193129cc3fbe116a7cd08346b
         //create text view
         TextView stationNameView = new TextView(this);
         stationNameView.setTextSize(40);
         stationNameView.setText(stationname);
         //create content view
         setContentView(stationNameView);
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        PendingIntent pi = PendingIntent.getService(this, 1, new Intent(this, intentService.class), 0);
+        locationManager.addProximityAlert(stationCoords[0], stationCoords[1], 3220, -1, pi);
     }
 
     //public double[] getCurrentCoords(){}
