@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onResponse(Response response) throws IOException {
-                Log.d(TAG, "Got response: " + response.body().byteStream());
+                Log.d(TAG, "Got response: " + response.body().string());
                 stationInfoParser obj = new stationInfoParser();
 //                HashMap<String, double[]> stationInfo = null;
                 try {
