@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class DistanceActivity extends Activity{
@@ -37,6 +38,7 @@ public class DistanceActivity extends Activity{
                 System.out.println(stationCoords[0]);
                 try {
                     startService(i);
+                    Toast.makeText(getBaseContext(), "Waiting to reach", Toast.LENGTH_SHORT).show();
                     System.out.println("Service started!");
                     //works up till here
                 }catch (Exception e){
