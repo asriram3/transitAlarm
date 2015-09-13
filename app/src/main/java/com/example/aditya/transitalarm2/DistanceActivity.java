@@ -37,21 +37,16 @@ public class DistanceActivity extends Activity{
                 Intent i = new Intent(getBaseContext(), intentService.class);
                 i.putExtra("stationCoords", stationCoords);
                 System.out.println(stationCoords[0]);
-//                try {
-                startService(i);
-
-                System.out.println("Service started!");
-//                }catch (Exception e){
-//                    System.out.println(e);
-//                }
+                try {
+                    startService(i);
+                    System.out.println("Service started!");
+                    //works up till here
+                }catch (Exception e){
+                    System.out.println(e);
+                }
             }
         });
         //insert button
-    }
-
-
-    public double getDistance(double[] stationCoordinates, double[] currentCoordinates){
-        return Math.sqrt((Math.pow(stationCoordinates[0],2)-(Math.pow(currentCoordinates[0],2))) + (Math.pow(stationCoordinates[1],2)-(Math.pow(currentCoordinates[1],2))));
     }
 
     @Override

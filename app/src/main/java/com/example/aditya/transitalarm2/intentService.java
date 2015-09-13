@@ -15,12 +15,6 @@ public class intentService extends IntentService {
     }
 
     @Override
-    public void onCreate(){
-        System.out.println("Service has started now...");
-    }
-
-
-    @Override
     protected void onHandleIntent(Intent intent) {
         System.out.println("Timer is on now!");
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);

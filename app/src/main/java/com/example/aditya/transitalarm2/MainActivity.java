@@ -69,7 +69,6 @@ public class MainActivity extends Activity {
                 Object o = lv.getItemAtPosition(position);
                 String str = o.toString();
                 //Toast.makeText(getBaseContext(), str, Toast.LENGTH_SHORT).show();
-
                 double[] coords = new double[2];
                 coords[0] = Double.parseDouble(data2[position][1]);
                 coords[1] = Double.parseDouble(data2[position][2]);
@@ -80,35 +79,7 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-//
-//        Request request = new Request.Builder()
-//                .get()
-//                .url("http://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V")
-//                .build();
-//
-//    Call call = CLIENT.newCall(request);
-//
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Request request, IOException e) {
-//                Log.e(TAG, "Request failed", e);
-//            }
-//
-//            @Override
-//            public void onResponse(Response response) throws IOException {
-//                //Log.d(TAG, "Got response: " + response.body().string());
-//                stationInfoParser obj = new stationInfoParser();
-//                HashMap<String, double[]> stationInfo = null;
-//                try {
-//                    stationInfo = obj.parseForCoords(response.body().string());
-//                    System.out.println(stationInfo.keySet());
-//                } catch (XmlPullParserException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//            }
-//        });
+
     }
 
 
