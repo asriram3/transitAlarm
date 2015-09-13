@@ -1,9 +1,9 @@
 package com.example.aditya.transitalarm2;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     public static final String TAG = "MainActivity";
 
     public static final OkHttpClient CLIENT = new OkHttpClient();
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 String str = o.toString();
                 //Toast.makeText(getBaseContext(), str, Toast.LENGTH_SHORT).show();
 
-                boolean [] coords = new boolean[2];
+                boolean[] coords = new boolean[2];
                 //coords[0] = 0;
                 //coords[1] = 0;
                 Intent intent = new Intent(getBaseContext(), DistanceActivity.class);
