@@ -1,15 +1,13 @@
 package com.example.aditya.transitalarm2;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class DistanceActivity extends Activity{
@@ -26,21 +24,28 @@ public class DistanceActivity extends Activity{
         Bundle stationData = getIntent().getExtras();
         stationname = stationData.getString("stationName");
         stationCoords = stationData.getDoubleArray("stationCoords");
+        setContentView(R.layout.activity_distance);
         //create text view
         TextView stationNameView = new TextView(this);
         stationNameView.setTextSize(40);
         stationNameView.setText(stationname);
 
         Button setAlarm = (Button) findViewById(R.id.setAlarmButton);
-        setAlarm.setText("Set Alarm");
+        //setAlarm.setText("Set Alarm");
         setAlarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent();
+                Intent i = new Intent(getBaseContext(), intentService.class);
                 i.putExtra("stationCoords", stationCoords);
-                startActivity(i);
+                System.out.println(stationCoords[0]);
+//                try {
+                startService(i);
+
+                System.out.println("Service started!");
+//                }catch (Exception e){
+//                    System.out.println(e);
+//                }
             }
         });
-        setContentView(stationNameView);
         //insert button
     }
 

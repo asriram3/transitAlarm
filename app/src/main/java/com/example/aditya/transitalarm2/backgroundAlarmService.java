@@ -15,6 +15,7 @@ public class backgroundAlarmService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        System.out.println("Timer is on now!");
         builder.setContentTitle("WAKE UP!");
         builder.setContentText("You are near your stop!");
         NotificationManager nf = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

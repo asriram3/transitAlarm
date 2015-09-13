@@ -21,7 +21,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Set Alarm"
         android:id="@+id/setAlarmButton"
         android:layout_below="@+id/stationName"
         android:layout_alignParentLeft="true"
