@@ -20,8 +20,6 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -30,7 +28,7 @@ public class MainActivity extends Activity {
 
     public static final OkHttpClient CLIENT = new OkHttpClient();
 
-    HashMap<String, double[]> stationInfo = null;
+    List<bartXMLParser.Entry> stationInfo = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,19 +83,21 @@ public class MainActivity extends Activity {
             @Override
             public void onResponse(Response response) throws IOException {
                 Log.d(TAG, "Got response: " + response.body().string());
-                stationInfoParser obj = new stationInfoParser();
+                bartXMLParser obj = new bartXMLParser();
+                System.out.println("OK!");
 //                HashMap<String, double[]> stationInfo = null;
                 try {
-                    stationInfo = obj.parseForCoords(response.body().byteStream());
+                    stationInfo = obj.parse(response.body().byteStream());
+                    System.out.println("OK");
                 } catch (XmlPullParserException e) {
                     e.printStackTrace();
                 }
 
-                Iterator it = stationInfo.entrySet().iterator();
-                while (it.hasNext()) {
-                    HashMap.Entry pair = (HashMap.Entry)it.next();
-                    System.out.println(pair.getKey() + " = " + pair.getValue());
-                    it.remove(); // avoids a ConcurrentModificationException
+                bartXMLParser.Entry ent = null;
+//                System.out.println(stationInfo.toString());
+                for(int i =0; i< stationInfo.size(); i++){
+                    ent = stationInfo.get(i);
+                    System.out.println(ent.title);
                 }
             }
         });
